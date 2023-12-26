@@ -11,11 +11,14 @@ import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
+import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
 
 export const logo = 'https://i.ibb.co/s9Qys2j/logo.png';
 
 export const categories = [
   { name: 'New', icon: <HomeIcon />, },
+  { name: 'CommonServiceCenter', icon: <SportsKabaddiIcon />, },
+  { name: 'UFC', icon: <SportsKabaddiIcon />, },
   { name: 'Education', icon: <SchoolIcon />, },
   { name: 'Music', icon: <MusicNoteIcon /> },
   { name: 'Movie', icon: <OndemandVideoIcon />, },

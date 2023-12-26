@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_KEY = 'e7f08b9a73msh0362970b4d37f32p13b06ajsn0ea61fc2b55f'
+const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL =  'https://youtube-v31.p.rapidapi.com'
 
 const options = {

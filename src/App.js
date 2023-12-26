@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { RootLayout, Home } from './pages';
+import { RootLayout, Home, Channel, Error } from './pages';
 
 const App = () => {
   const theme = createTheme({
@@ -19,8 +19,10 @@ const App = () => {
     {
       path: '/',
       element: <RootLayout />,
+      errorElement : <Error />,
       children: [
         { index: true, element: <Home /> },
+        { path : 'channel/:channelId', element : <Channel />}
       ],
     },
   ]);

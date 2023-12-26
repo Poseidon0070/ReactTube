@@ -3,8 +3,15 @@ import { Box, CardContent, CardMedia, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Link } from 'react-router-dom';
 import { demoProfilePicture } from '../assets/utils/constants';
+import formatNumber from '../assets/utils/unitConverter'
 
-const ChannelCard = ({ channelDetail}) => (
+function reformat(formattedNumber) {
+  let formattedNumberWithUppercase = formattedNumber.replace(/[kmb]$/, match => match.toUpperCase());
+  if(formattedNumberWithUppercase.slice(-1) === '0') formattedNumberWithUppercase = formattedNumberWithUppercase.slice(0,-2)
+  return formattedNumberWithUppercase;
+}
+
+const ChannelCard = ({ channelDetail, marginTop }) => (
   <Box
     sx={{
       boxShadow: 'none',
@@ -14,6 +21,8 @@ const ChannelCard = ({ channelDetail}) => (
       alignItems: 'center',
       width: { xs: '356px', md: '320px' },
       height: '326px',
+      '&:hover':{transition: "transform 0.3s ease-in-out 0.1s", transform:"scale(1.05)"},
+      marginTop
     }}
   >
     <Link to={`/channel/${channelDetail?.id?.channelId}`}>
@@ -31,7 +40,7 @@ const ChannelCard = ({ channelDetail}) => (
         </Typography>
         {channelDetail?.statistics?.subscriberCount && (
           <Typography sx={{ fontSize: '15px', fontWeight: 500, color: 'gray' }}>
-            {parseInt(channelDetail?.statistics?.subscriberCount).toLocaleString('en-US')} Subscribers
+            {reformat(formatNumber(parseInt(channelDetail?.statistics?.subscriberCount)).toLocaleString('en-US'))} Subscribers
           </Typography>
         )}
       </CardContent>

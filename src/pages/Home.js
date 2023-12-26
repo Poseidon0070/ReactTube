@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
+import fetchData from '../assets/utils/dataFetcher';
+import Videos from './Videos'
 
 import Sidebar from '../components/Sidebar';
 
 const Home = () => {
 
+  const [category, setCategory] = useState('New')
+  const [videos, setVideos] = useState([])
+
+  useEffect(() => {
+    fetchData(`search?part=snippet&q=${category}`)
+    .then((data) => setVideos(data.items))
+    .catch((err) => {throw new Error(err)})
+  }, [category]);
 
   return (
     <Stack
@@ -18,38 +28,11 @@ const Home = () => {
         py={2}
         borderRight={'1px solid #3d3d3d'}
       >
-        <Sidebar />
+        <Sidebar category={category} setCategory={setCategory}/>
       </Box>
-      <Box sx={{ flexDirection: "column", height: "92vh",width:"100%", overflow: "auto" }}>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-  <Typography variant="h1">Hello</Typography>
-</Box>
+      <div>
+        <Videos videos={videos}/>
+      </div>
 
     </Stack>
   );

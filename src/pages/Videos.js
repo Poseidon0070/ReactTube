@@ -2,7 +2,7 @@ import React from 'react'
 import VideoCard from '../components/VideoCard'
 import ChannelCard from '../components/ChannelCard'
 import { Box,LinearProgress } from '@mui/material'
-
+ 
 const Videos = ({videos, isChannel, direction}) => {
   if(!videos?.length) return <h1><LinearProgress /></h1>
   return (
@@ -20,6 +20,7 @@ const Videos = ({videos, isChannel, direction}) => {
               }else if(!isChannel){
                 return <ChannelCard key={key} channelDetail={video} />
               }
+              return [];
             })}
         </Box>
     </>

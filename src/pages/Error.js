@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box, Button, Typography } from '@mui/material'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import ErrorIcon from '@mui/icons-material/Error';
 import { Link } from 'react-router-dom';
 

@@ -29,14 +29,13 @@ const VideoDetail = () => {
 
   const { snippet: { title, channelId, channelTitle }, statistics: { viewCount, likeCount } } = videoDetail;
 
-
-
   return (
     <>
       {isLoading && <LinearProgress />}
       {!isLoading && 
         <Box minHeight="90vh">
           <Stack direction={{ xs: "column", md: "row", ml:"2" }}
+            sx={{ display:"flex",}}
             divider={
               <Box
                 component="hr"
@@ -48,7 +47,7 @@ const VideoDetail = () => {
             }
           >
             <Box sx={{width:"90vw"}}>
-              <Box sx={{ width: {md:"78vw", xs:"95vw"}, position: "sticky", top: "86px", px:2 }}>
+              <Box sx={{ width: {md:"70vw", xs:"95vw"}, position: "sticky", top: "86px", px:3 }}>
                 <ReactPlayer url={`https://www.youtube.com/watch?v=${videoId}`} className="react-player" controls />
                 <Typography color="#fff" variant="h5" fontWeight="bold" p={2}>
                   {title}

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import fetchData from '../assets/utils/dataFetcher'
 import { Box, LinearProgress } from '@mui/material'
-import VideoCard from '../components/VideoCard'
 import ChannelCard from '../components/ChannelCard'
 import Videos from './Videos'
 

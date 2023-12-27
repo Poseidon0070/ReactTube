@@ -18,7 +18,7 @@ const Sidebar = (props) => {
           overflowY: 'auto',
           overflowX: 'scroll',
           height: { xs: 'auto', md: '95%'},
-          width:{xs:"95%" },
+          width:{xs:"97.1%" },
           mb:{md:2},
           mx:{xs:3}
         }}

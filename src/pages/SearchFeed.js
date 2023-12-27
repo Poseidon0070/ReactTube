@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Stack, Box, Typography,LinearProgress } from '@mui/material';
+import {LinearProgress } from '@mui/material';
 import fetchData from '../assets/utils/dataFetcher';
 import Videos from './Videos';
 import { useParams } from 'react-router-dom';

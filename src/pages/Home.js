@@ -39,7 +39,7 @@ const Home = () => {
             <Sidebar category={category} setCategory={setCategory} />
           </Box>
           <div>
-            <Videos videos={videos} />
+            <Videos videos={videos}  isChannel={false} />
           </div>
         </Stack>
       )}

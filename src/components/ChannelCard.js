@@ -3,15 +3,15 @@ import { Box, CardContent, CardMedia, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Link } from 'react-router-dom';
 import { demoProfilePicture } from '../assets/utils/constants';
-import formatNumber from '../assets/utils/unitConverter'
+import {formatNumber,reformat} from '../assets/utils/unitConverter'
 
-function reformat(formattedNumber) {
-  let formattedNumberWithUppercase = formattedNumber.replace(/[kmb]$/, match => match.toUpperCase());
-  if(formattedNumberWithUppercase.slice(-1) === '0') formattedNumberWithUppercase = formattedNumberWithUppercase.slice(0,-2)
-  return formattedNumberWithUppercase;
-}
 
-const ChannelCard = ({ channelDetail, marginTop }) => (
+
+const ChannelCard = ({ channelDetail, marginTop, isLinkDisabled}) => {
+
+  const isDisabled = isLinkDisabled;
+  
+  return (
   <Box
     sx={{
       boxShadow: 'none',
@@ -19,13 +19,17 @@ const ChannelCard = ({ channelDetail, marginTop }) => (
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: { xs: '356px', md: '320px' },
+      width: { xs: '356px', md: '320px' },  
       height: '326px',
       '&:hover':{transition: "transform 0.3s ease-in-out 0.1s", transform:"scale(1.05)"},
       marginTop
     }}
   >
-    <Link to={`/channel/${channelDetail?.id?.channelId}`}>
+    <Link
+      to={`/channel/${channelDetail?.id?.channelId}`}
+      className={isDisabled ? 'disabled-link' : ''}
+      style={isDisabled ? { pointerEvents: 'none', color: 'gray' } : {}}
+    >
       <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', color: '#fff' }}>
         <Box sx={{display:"flex", justifyContent:"center"}}>
         <CardMedia
@@ -46,6 +50,6 @@ const ChannelCard = ({ channelDetail, marginTop }) => (
       </CardContent>
     </Link>
   </Box>
-);
+)};
 
 export default ChannelCard;

@@ -5,18 +5,18 @@ import vidLogo from '../assets/images/vid_logo.png';
 import TroubleshootSharpIcon from '@mui/icons-material/TroubleshootSharp';
 
 const Navbar = () => {
-  let searchContentRef = useRef('55');
+  let searchContentRef = useRef('');
   let navigate = useNavigate();
 
   let submitHandler = (event) => {
     event.preventDefault();
     let content = searchContentRef.current.value;
     if (content === '') {
-      searchContentRef.current.focus();
+      searchContentRef.focus();
       return;
     }
     console.log(content);
-    return navigate('/search/' + content);
+    navigate(`/search/${content}`);
   };
 
   const isScreenGreaterThanSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));

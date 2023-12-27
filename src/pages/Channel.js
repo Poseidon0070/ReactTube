@@ -34,10 +34,10 @@ const Channel = () => {
       <Box>
         <Box sx={{height:"230px", bgcolor:"yellow", width:"100%"}} />
         <Box sx={{display:"flex", justifyContent:"center"}}>
-          <ChannelCard channelDetail={channelDetail} marginTop='-100px'/>
+          <ChannelCard channelDetail={channelDetail} marginTop='-100px' isLinkDisabled={true}/>
         </Box>
         <Box>
-          <Videos videos={videos}/>
+          <Videos videos={videos} isChannel={true}/>
         </Box>
       </Box>
     }

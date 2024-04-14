@@ -4,6 +4,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: black;
+  overflow-y: hidden;
 }
 
 a {
@@ -12,14 +13,14 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 10px;
   height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(114, 113, 113);
+  background-color: yellow;
   border-radius: 10px;
-  height: 200px;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-track {

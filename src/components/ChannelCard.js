@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import { demoProfilePicture } from '../assets/utils/constants';
 import {formatNumber,reformat} from '../assets/utils/unitConverter'
 
-
-
 const ChannelCard = ({ channelDetail, marginTop, isLinkDisabled}) => {
 
   const isDisabled = isLinkDisabled;

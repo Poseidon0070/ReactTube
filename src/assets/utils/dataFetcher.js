@@ -4,7 +4,8 @@ const BASE_URL =  'https://youtube-v31.p.rapidapi.com'
 
 const options = {
   params: {
-    maxResults: '52',
+    maxResults: '30',
+    pageToken:''
   },
   headers: {
     'X-RapidAPI-Key': API_KEY,
@@ -12,8 +13,9 @@ const options = {
   } 
 };
 
-let fetchData = async (URL) => {
+let fetchData = async (URL, pageParam) => {
     try{
+        options.params.pageToken = pageParam
         const response = await axios.get(`${BASE_URL}/${URL}`,options);
         return response.data;
     }catch{

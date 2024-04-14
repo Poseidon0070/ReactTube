@@ -3,7 +3,9 @@ import VideoCard from '../components/VideoCard'
 import ChannelCard from '../components/ChannelCard'
 import { Box,LinearProgress } from '@mui/material'
  
-const Videos = ({videos, isChannel, direction}) => {
+const Videos = ({videos,innerref, isChannel, direction}) => {
+  console.log("here")
+  console.log({videos, isChannel, direction})
   if(!videos?.length) return <h1><LinearProgress /></h1>
   return (
     <>
@@ -16,6 +18,9 @@ const Videos = ({videos, isChannel, direction}) => {
         }}>
             {videos.map((video,key) => {
               if(video.id.videoId !== undefined){
+                if(video.isEnd === true){
+                  return <VideoCard key={key} innerref={innerref} video={video} />
+                }
                 return <VideoCard key={key} video={video} />
               }else if(!isChannel){
                 return <ChannelCard key={key} channelDetail={video} />

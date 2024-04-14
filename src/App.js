@@ -2,6 +2,9 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { RootLayout, Home, Channel, Error, SearchFeed,VideoDetail } from './pages';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 const App = () => {
   const theme = createTheme({
@@ -15,7 +18,7 @@ const App = () => {
     },
   });
 
-  let router = createBrowserRouter([
+  let router = createBrowserRouter([ 
     {
       path: '/',
       element: <RootLayout />,
@@ -31,7 +34,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 };

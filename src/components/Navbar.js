@@ -35,7 +35,7 @@ const Navbar = () => {
         position: 'sticky',
         top: 0,
         bgcolor: 'rgba(0,0,0,0.9)',
-        opacity:  1,
+        opacity: 1,
         zIndex: 1000,
       }}
     >
@@ -43,7 +43,7 @@ const Navbar = () => {
         <Stack direction="row">
           <img src={vidLogo} height={50} alt="Logo" />
           {isScreenGreaterThanSm && (
-            <Typography variant="h4" sx={{ mt: 0.8, ml: 1, color:"red", fontFamily:"fantasy", textShadow:"red 2px 1px 3px"  }}>
+            <Typography variant="h4" sx={{ mt: 0.8, ml: 1, color: "red", fontFamily: "fantasy", textShadow: "red 2px 1px 3px" }}>
               ReactTube
             </Typography>
           )}
@@ -52,12 +52,12 @@ const Navbar = () => {
 
       <Paper
         component="form"
-        sx={{ width: {xs:"260px", md:"340px"}, height: '40px', borderRadius: 4, opacity:"0.9" }}
+        sx={{ width: { xs: "260px", md: "340px" }, height: '40px', borderRadius: 4, opacity: "0.9" }}
       >
         <TextField
           variant="standard"
           placeholder="Search ReactTube"
-          sx={{ pl: 1.5, pt: 1, borderRight: 2, width: {xs:"200px", md:"280px"} }}
+          sx={{ pl: 1.5, pt: 1, borderRight: 2, width: { xs: "200px", md: "280px" } }}
           inputRef={searchContentRef}
           autoComplete='off'
         />

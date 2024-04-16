@@ -1,6 +1,6 @@
 import React from 'react'
-import VideoCard from '../components/VideoCard'
-import ChannelCard from '../components/ChannelCard'
+import VideoCard from './VideoCard'
+import ChannelCard from './ChannelCard'
 import { Box,LinearProgress } from '@mui/material'
  
 const Videos = ({videos,innerref, isChannel, direction}) => {

@@ -19,7 +19,6 @@ const ChannelCard = ({ channelDetail, marginTop, isLinkDisabled}) => {
       alignItems: 'center',
       width: { xs: '356px', md: '320px' },  
       height: '326px',
-      '&:hover':{transition: "transform 0.3s ease-in-out 0.1s", transform:"scale(1.05)"},
       marginTop
     }}
   >

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Stack, Box,LinearProgress, Typography } from '@mui/material';
 import fetchData from '../assets/utils/dataFetcher';
-import Videos from './Videos';
+import Videos from '../components/Videos';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 
@@ -9,12 +9,10 @@ import Sidebar from '../components/Sidebar';
 
 const Home = () => {
   const [category, setCategory] = useState('New');
-  console.log(category)
   let {ref, inView} = useInView()
   const queryClient = useQueryClient()
 
   const fetchVideos = async ({ pageParam = '' }) => {
-    console.log("pageParam", pageParam)
     let res = await fetchData(`search?part=snippet&q=${category}`,pageParam)
     return res; 
    };
@@ -37,7 +35,6 @@ const Home = () => {
     },
    });
 
-   console.log("isFetchingNextPage", isFetchingNextPage, status)
 
    useEffect(() => {
      if(inView && hasNextPage){
@@ -55,7 +52,6 @@ const Home = () => {
     videos = data?.pages.map(page => page.items).reduce((acc, val) => acc.concat(val), []);
     videos[videos.length-1].isEnd = true
 
-   console.log(isFetchingNextPage)
   return (
     <>
         <Stack

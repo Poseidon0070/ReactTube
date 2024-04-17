@@ -6,6 +6,7 @@ import ChannelCard from '../components/ChannelCard'
 import Videos from '../components/Videos'
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Channel = () => {
     const {channelId} = useParams();
@@ -58,13 +59,11 @@ const Channel = () => {
      if (error) return <div>Error: {error.message}</div>;
   
     videos = data?.pages.map(page => page.items).reduce((acc, val) => acc.concat(val), []);
-    videos[videos.length-1].isEnd = true
+    if(videos.length) videos[videos.length-1].isEnd = true
 
     
   return (
     <>
-    {isLoading && <LinearProgress color="primary" />}
-    {!isLoading && 
       <Box>
         <Box sx={{height:"230px", bgcolor:"yellow", width:"100%"}} />
         <Box sx={{display:"flex", justifyContent:"center"}}>
@@ -74,7 +73,11 @@ const Channel = () => {
           <Videos videos={videos} innerref={ref} isChannel={true}/>
         </Box>
       </Box>
-    }
+      {isFetchingNextPage && 
+        <Box sx={{display:"flex", justifyContent:"center", my:"25px"}}>
+          <CircularProgress color="success" />
+        </Box>
+      }
     </>
   )
 }

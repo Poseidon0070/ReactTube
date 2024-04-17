@@ -19,7 +19,6 @@ const Navbar = () => {
       searchContentRef.focus();
       return;
     }
-    console.log(content);
     navigate(`/search/${content}`);
   };
 

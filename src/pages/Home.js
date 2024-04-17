@@ -4,6 +4,7 @@ import fetchData from '../assets/utils/dataFetcher';
 import Videos from '../components/Videos';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Sidebar from '../components/Sidebar';
 
@@ -71,6 +72,11 @@ const Home = () => {
             <Videos videos={videos} innerref={ref} isChannel={false} />
           </div>
         </Stack>
+        {isFetchingNextPage && 
+          <Box sx={{display:"flex", justifyContent:"center", my:"25px"}}>
+            <CircularProgress color="success" />
+          </Box>
+        }
     </>
   );
 };

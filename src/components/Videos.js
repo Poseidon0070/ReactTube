@@ -4,8 +4,6 @@ import ChannelCard from './ChannelCard'
 import { Box,LinearProgress } from '@mui/material'
  
 const Videos = ({videos,innerref, isChannel, direction}) => {
-  console.log("here")
-  console.log({videos, isChannel, direction})
   if(!videos?.length) return <h1><LinearProgress /></h1>
   return (
     <>

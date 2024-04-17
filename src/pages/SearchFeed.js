@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {LinearProgress } from '@mui/material';
+import {LinearProgress,Box } from '@mui/material';
 import fetchData from '../assets/utils/dataFetcher';
 import Videos from '../components/Videos';
 import { useParams } from 'react-router-dom';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const SearchFeed = () => {
   const {searchTerm} = useParams()
@@ -51,6 +52,11 @@ const SearchFeed = () => {
       <div>
         <Videos videos={videos} innerref={ref}  isChannel={false} />
       </div>
+      {isFetchingNextPage && 
+        <Box sx={{display:"flex", justifyContent:"center", my:"25px"}}>
+          <CircularProgress color="success" />
+        </Box>
+      }
     </>
   );
 };

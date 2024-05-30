@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "react-tube-007",
     "public": "build",
     "ignore": [
       "firebase.json",

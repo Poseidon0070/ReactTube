@@ -7,10 +7,12 @@ import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@mui/material/CircularProgress';
 
 import Sidebar from '../components/Sidebar';
+import { useAppContext } from '../context/appContext';
 
 const Home = () => {
   const [category, setCategory] = useState('New');
   let { ref, inView } = useInView()
+  const {isSidebarOpen} = useAppContext()
   const queryClient = useQueryClient()
 
   const fetchVideos = async ({ pageParam = '' }) => {
@@ -60,14 +62,15 @@ const Home = () => {
           flexDirection: { sx: 'column', md: 'row' },
         }}
       >
+      {isSidebarOpen && 
         <Box
           sx={{ bgcolor: 'black', height: { md: '88vh', xs: 'auto' }, width: 'auto' }}
-          px={2}
-          py={2}
+          px={{md:2}}
           borderRight={'1px solid #3d3d3d'}
         >
           <Sidebar category={category} setCategory={setCategory} />
         </Box>
+      }
         <div>
           <Videos videos={videos} innerref={ref} isChannel={false} />
         </div>

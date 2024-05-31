@@ -20,13 +20,13 @@ a {
 body > * ::-webkit-scrollbar {
   /* Styles for scrollbar */
   display: block;
-  width: 10px;
+  width: 8px;
   height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
   /* Styles for scrollbar thumb */
-  background-color: yellow;
+  background-color: rgb(26, 124, 38);
   border-radius: 10px;
   height: 2px;
 }

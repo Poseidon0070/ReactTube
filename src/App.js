@@ -24,10 +24,10 @@ const App = () => {
       element: <RootLayout />,
       errorElement : <Error />,
       children: [
-        { index: true, element: <Home /> },
-        { path : 'channel/:channelId', element : <Channel />},
-        { path : 'search/:searchTerm', element : <SearchFeed />},
-        { path : 'video/:videoId', element : <VideoDetail />}
+        // { index: true, element: <Home /> },
+        // { path : 'channel/:channelId', element : <Channel />},
+        // { path : 'search/:searchTerm', element : <SearchFeed />},
+        // { path : 'video/:videoId', element : <VideoDetail />}
       ],
     },
   ]);

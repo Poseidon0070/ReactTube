@@ -7,20 +7,27 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import { useAppContext } from '../context/appContext';
 
 const Navbar = () => {
   let searchContentRef = useRef('');
   let navigate = useNavigate();
   let [isSearchBarOpen, setSearchBarOpen] = useState(false);
+  let {setSidebarOpen, signupWithGoogle} = useAppContext()
 
   const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const isScreenGreaterThanSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   let inputWidth = isScreenGreaterThanSm ? '310px' : '260px';
   let searchWidth = isScreenGreaterThanSm ? '260px' : '210px';
 
+  let handleSignup = () => {
+    console.log("here")
+    signupWithGoogle()
+  }
+
   let submitHandler = (event) => {
     event.preventDefault();
-    let content = searchContentRef.current.value;
+    let content = searchContentRef.current.valueOf;
     if (content === '') {
       searchContentRef.current.focus();
       return;
@@ -30,12 +37,12 @@ const Navbar = () => {
 
   if (isSearchBarOpen) {
     return (
-      <Box py={2} sx={{display:"flex", justifyContent:"center"}}>
+      <Box py={2} sx={{display:"flex",mr:"1px",mb:"9px",justifyContent:"center"}}>
       <Box sx={{display:"flex",alignItems:"center"}}>
         <ArrowBackRoundedIcon fontSize='large'
         onClick={() => setSearchBarOpen(false)}
           sx={{
-            color: "grey", transition: "200ms ease-in-out", mr:"15px",mt:"4px", p: "2px", '&:hover': {
+            color: "grey", transition: "200ms ease-in-out", mr:"5px",mt:"4px", p: "1px", '&:hover': {
               cursor: 'pointer',
               transform: "scale(1.07)",
               bgcolor: "#5e5656",
@@ -86,9 +93,12 @@ const Navbar = () => {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center" }}>
+      {isScreenGreaterThanMd && 
         <Box sx={{ mr: "30px" }}>
-          <MenuRoundedIcon fontSize='large' sx={{
-            color: "white", transition: "200ms ease-in-out", p: "4px", '&:hover': {
+          <MenuRoundedIcon fontSize='large'
+          onClick = {() => setSidebarOpen(val => ! val)}
+           sx={{
+            color: "white", transition: "200ms ease-in-out", p: "4px",mt:"4px", '&:hover': {
               cursor: 'pointer',
               transform: "scale(1.07)",
               bgcolor: "#5e5656",
@@ -96,6 +106,7 @@ const Navbar = () => {
             },
           }} />
         </Box>
+      }
         <Link to="./">
           <Stack direction="row">
             <img src={vidLogo} height={50} alt="Logo" />
@@ -139,7 +150,7 @@ const Navbar = () => {
           <SearchRoundedIcon fontSize='large'
             onClick={() => setSearchBarOpen(true)}
             sx={{
-              color: "white", mr: "20px", mt: "5px", p: "3px", transition: "200ms ease-in-out", '&:hover': {
+              color: "white", mr: "15px", mt: "5px", p: "3px", transition: "200ms ease-in-out", '&:hover': {
                 cursor: 'pointer',
                 transform: "scale(1.07)",
                 bgcolor: "#5e5656",
@@ -147,13 +158,16 @@ const Navbar = () => {
               }
             }} />
         }
-        <Box sx={{
+        <Box 
+        onClick={handleSignup}
+        sx={{
           border: "2px solid red",
           display: "flex",
           alignItems: "center",
           padding: "3px 12px",
           borderRadius: "999px",
           transition: "200ms ease-in-out",
+
           '&:hover': {
             cursor: 'pointer',
             cursor: 'pointer',

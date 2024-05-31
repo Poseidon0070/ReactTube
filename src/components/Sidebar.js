@@ -5,9 +5,11 @@ import { Button } from '@mui/material';
 import './Sidebar.css'; 
 import CopyrightSharpIcon from '@mui/icons-material/CopyrightSharp';
 
+
 const Sidebar = (props) => {
 
   const isScreenGreaterThanSm = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
 
   return (
     <>
@@ -20,7 +22,7 @@ const Sidebar = (props) => {
           height: { xs: 'auto', md: '95%'},
           width:{xs:"97.1%" },
           mb:{md:2},
-          mx:{xs:3}
+          mx:{md:3}
         }}
         className="sidebar-container" 
       >

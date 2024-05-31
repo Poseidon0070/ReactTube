@@ -13,7 +13,7 @@ let AppContextProvider = ({children}) => {
 
     const signupWithGoogle = async() => {
         signInWithPopup(auth, googleProvider)
-        .then((result) => {
+        .then((result) => { 
             console.log("Login Successfull")
             setUser(result.user)
         }).catch(err => {
@@ -23,7 +23,7 @@ let AppContextProvider = ({children}) => {
 
     const signOutUser = async() => {
         return signOut(auth).then((res) => {
-          console.log(res)
+          console.log('Logout Successfull')
           setUser(null)
         }).catch(err => {
           console.log(err)

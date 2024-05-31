@@ -11,18 +11,12 @@ import GradeRoundedIcon from '@mui/icons-material/GradeRounded';
 import SubscriptionsRoundedIcon from '@mui/icons-material/SubscriptionsRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { useAppContext } from '../context/appContext';
-import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
+
 
 const Navbar = () => {
   let searchContentRef = useRef('');
@@ -30,9 +24,8 @@ const Navbar = () => {
   let [isSearchBarOpen, setSearchBarOpen] = useState(false);
   let [userNav, setUserNav] = useState(false)
   let { setSidebarOpen, signupWithGoogle, signOutUser, user } = useAppContext()
-  console.log(user)
-
   const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
   const isScreenGreaterThanSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   let inputWidth = isScreenGreaterThanSm ? '310px' : '260px';
   let searchWidth = isScreenGreaterThanSm ? '260px' : '210px';
@@ -228,7 +221,6 @@ const Navbar = () => {
               transition: "200ms ease-in-out",
 
               '&:hover': {
-                cursor: 'pointer',
                 cursor: 'pointer',
                 bgcolor: "#772727"
               }

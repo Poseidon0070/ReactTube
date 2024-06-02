@@ -29,7 +29,7 @@ const App = () => {
         setUser(null)
       }
     })
-  }, [])
+  }, [setUser])
 
   let router = createBrowserRouter([ 
     {

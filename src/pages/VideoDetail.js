@@ -21,7 +21,11 @@ const VideoDetail = () => {
   const [videos, setVideos] = useState(null);
   const { videoId } = useParams();
   const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('lg'));
-  const {savedVideos, setSavedVideos} = useAppContext()
+  const {setSidebarOpen,savedVideos, setSavedVideos} = useAppContext()
+
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [])
 
   useEffect(() => {
     setIsLoading(true)
@@ -148,7 +152,7 @@ const VideoDetail = () => {
                         padding: "7px 12px",
                         borderRadius: "999px",
                         transition: "200ms ease-in-out",
-                        ml: "20px",
+                        ml: "10px",
                         '&:hover': {
                           cursor: 'pointer',
                           bgcolor: "#5e5656"
@@ -160,18 +164,18 @@ const VideoDetail = () => {
                       }
                     </Box>
                   </Box>
-                  <Stack direction="row" alignItems="center" gap={"20px"}>
+                  <Stack direction="row" alignItems="center" gap={"12px"}>
                     <Box sx={{
                       opacity: 0.7, border: "1px solid white",
                       display: "flex",
                       alignItems: "center",
                       py:"4px",
-                      px:{md:"18px", xs:"8px"},
+                      px:{md:"14px", xs:"8px"},
                       borderRadius: "999px",
                       bgcolor: "#5e5656"
                     }}>
                       <Box sx={{
-                        display: "flex", gap: "5px", justifyContent: "center", alignItems: "center", height: "30px",
+                        display: "flex", gap: "2px", justifyContent: "center", alignItems: "center", height: "30px",
                       }}>{reformat(formatNumber(parseInt(likeCount).toLocaleString()))}<ThumbUpIcon sx={{mb:"5px"}}/></Box>
                     </Box>
                     <Typography variant="body1" sx={{
@@ -180,11 +184,11 @@ const VideoDetail = () => {
                       display: "flex",
                       alignItems: "center",
                       py:"8px",
-                      px:{md:"18px", xs:"8px"},
+                      px:{md:"14px", xs:"4px"},
                       borderRadius: "999px",
                       bgcolor: "#5e5656"
                     }}>
-                      {reformat(formatNumber(parseInt(viewCount).toLocaleString()))} <RemoveRedEyeRoundedIcon sx={{ml:"4px"}}/>
+                      {reformat(formatNumber(parseInt(viewCount).toLocaleString()))} <RemoveRedEyeRoundedIcon sx={{ml:"2px"}}/>
                     </Typography>
                   </Stack>
                 </Stack>

@@ -1,18 +1,20 @@
 import React from 'react'
 import VideoCard from './VideoCard'
 import ChannelCard from './ChannelCard'
-import { Box,LinearProgress } from '@mui/material'
+import { Box,LinearProgress, useMediaQuery } from '@mui/material'
  
 const Videos = ({videos,innerref, isChannel, direction}) => {
+  const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
   if(!videos?.length) return <h1><LinearProgress /></h1>
   return (
     <>
         <Box direction = {direction || "row"} sx={{display:"flex",
         flexDirection : {direction},
-        flexWrap:"wrap", mx:2, px:2,
+        flexWrap:"wrap", px:4,
         justifyContent:"space-evenly",
         height:"92vh",
         overflowY:"scroll",
+        mt: !isScreenGreaterThanMd?"50px":"0px"
         }}>
             {videos.map((video,key) => {
               if(video.id.videoId !== undefined){

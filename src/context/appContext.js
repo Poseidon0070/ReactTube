@@ -11,6 +11,7 @@ let AppContextProvider = ({children}) => {
     let [isSidebarOpen, setSidebarOpen] = useState(true)
     let [user, setUser] = useState(null)
     let [savedVideos, setSavedVideos] = useState([])
+    const [category, setCategory] = useState('New');
 
     const signupWithGoogle = async() => {
         signInWithPopup(auth, googleProvider)
@@ -40,7 +41,9 @@ let AppContextProvider = ({children}) => {
             user,
             setUser,
             savedVideos,
-            setSavedVideos
+            setSavedVideos,
+            category,
+            setCategory,
             }} >
             {children}
         </AppContext.Provider>

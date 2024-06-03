@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Stack, Box, LinearProgress, Typography } from '@mui/material';
+import { Stack, Box, LinearProgress, Typography, useMediaQuery } from '@mui/material';
 import fetchData from '../assets/utils/dataFetcher';
 import Videos from '../components/Videos';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
@@ -10,11 +10,12 @@ import Sidebar from '../components/Sidebar';
 import { useAppContext } from '../context/appContext';
 
 const Home = () => {
-  const [category, setCategory] = useState('New');
   let { ref, inView } = useInView()
   const {isSidebarOpen} = useAppContext()
   const queryClient = useQueryClient()
-
+  const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  
+  const {category, setCategory} = useAppContext();
   const fetchVideos = async ({ pageParam = '' }) => {
     let res = await fetchData(`search?part=snippet&q=${category}`, pageParam)
     return res;
@@ -60,17 +61,9 @@ const Home = () => {
       <Stack
         sx={{
           flexDirection: { sx: 'column', md: 'row' },
+          ml:isSidebarOpen && isScreenGreaterThanMd?"250px":"0px"
         }}
       >
-      {isSidebarOpen && 
-        <Box
-          sx={{ bgcolor: 'black', height: { md: '88vh', xs: 'auto' }, width: 'auto' }}
-          px={{md:2}}
-          borderRight={'1px solid #3d3d3d'}
-        >
-          <Sidebar category={category} setCategory={setCategory} />
-        </Box>
-      }
         <div>
           <Videos videos={videos} innerref={ref} isChannel={false} />
         </div>

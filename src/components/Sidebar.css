@@ -1,10 +1,11 @@
 
 .sidebar-container {
     overflow-y: auto;
+    overflow-x: auto;
   }
   
 .sidebar-container::-webkit-scrollbar {
-  width: 2px;
+  width: 4px;
 }
 
 .sidebar-container::-webkit-scrollbar-thumb {

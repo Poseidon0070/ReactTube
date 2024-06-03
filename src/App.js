@@ -31,6 +31,7 @@ const App = () => {
       }
     })
   }, [setUser])
+  
 
   let router = createBrowserRouter([ 
     {

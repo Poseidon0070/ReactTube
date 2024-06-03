@@ -12,6 +12,7 @@ import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
+import SportsMmaRoundedIcon from '@mui/icons-material/SportsMmaRounded';
 
 export const logo = 'https://i.ibb.co/s9Qys2j/logo.png';
 
@@ -29,6 +30,7 @@ export const categories = [
   { name: 'Fashion', icon: <CheckroomIcon />, },
   { name: 'ReactJS', icon: <CodeIcon />, },
   { name: 'Beauty', icon: <FaceRetouchingNaturalIcon />, },
+  { name: 'Boxing', icon: <SportsMmaRoundedIcon />, },
   { name: 'Comedy', icon: <TheaterComedyIcon />, },
   { name: 'Gym', icon: <FitnessCenterIcon />, },
   { name: 'Crypto', icon: <DeveloperModeIcon />, },

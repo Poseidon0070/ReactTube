@@ -7,6 +7,7 @@ import Videos from '../components/Videos'
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@mui/material/CircularProgress';
+import { useAppContext } from '../context/appContext'
 
 const Channel = () => {
     const {channelId} = useParams();
@@ -14,6 +15,12 @@ const Channel = () => {
     const queryClient = useQueryClient()
     const [channelDetail, setChannelDetail] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+
+    const {setSidebarOpen} = useAppContext()
+
+    useEffect(() => {
+      setSidebarOpen(false)
+    }, [])
 
     useEffect(() => {
       setIsLoading(true)

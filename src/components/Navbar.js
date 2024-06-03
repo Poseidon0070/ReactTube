@@ -23,13 +23,13 @@ const Navbar = () => {
   let navigate = useNavigate();
   let [isSearchBarOpen, setSearchBarOpen] = useState(false);
   let [userNav, setUserNav] = useState(false)
-  let { setSidebarOpen, signupWithGoogle, signOutUser, user } = useAppContext()
+  let {isSidebarOpen, setSidebarOpen, signupWithGoogle, signOutUser, user } = useAppContext()
   const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   const isScreenGreaterThanSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   let inputWidth = isScreenGreaterThanSm ? '310px' : '260px';
   let searchWidth = isScreenGreaterThanSm ? '260px' : '210px';
-
+  console.log(isSidebarOpen)
   let handleSignup = () => {
     signupWithGoogle()
   }

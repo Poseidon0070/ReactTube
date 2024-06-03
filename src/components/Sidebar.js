@@ -1,28 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { categories } from '../assets/utils/constants';
 import { Stack, useMediaQuery, Typography,Box } from '@mui/material';
 import { Button } from '@mui/material';
 import './Sidebar.css'; 
 import CopyrightSharpIcon from '@mui/icons-material/CopyrightSharp';
-
+import { useAppContext } from '../context/appContext';
+import fetchData from '../assets/utils/dataFetcher';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = (props) => {
 
-  const isScreenGreaterThanSm = useMediaQuery((theme) => theme.breakpoints.up('md'));
-
+  const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const {isSidebarOpen} = useAppContext()
+  const {category, setCategory} = useAppContext();
+  let navigate = useNavigate()
+  const fetchVideos = async ({ pageParam = '' }) => {
+    let res = await fetchData(`search?part=snippet&q=${category}`, pageParam)
+    return res;
+  };
 
   return (
-    <>
+    <Box sx={{
+        position: "fixed",
+        top: "80px",
+        left: 0,
+        height: isScreenGreaterThanMd?"97%":"auto",
+        zIndex: "1000",
+        bgcolor:"black",
+        opacity:"0.9",
+        display:"flex",
+        overflowY: 'auto',
+        overflowX: 'auto',
+        flexDirection :"column"
+    }}>
       <Stack
         direction="row"
         sx={{
           flexDirection: { md: 'column' },
           overflowY: 'auto',
-          overflowX: 'scroll',
+          overflowX: 'auto',
           height: { xs: 'auto', md: '95%'},
-          width:{xs:"97.1%" },
+          width:{xs:"100vw",md:"91%"},
           mb:{md:2},
-          mx:{md:3}
+          mx:{md:3},
         }}
         className="sidebar-container" 
       >
@@ -30,9 +50,9 @@ const Sidebar = (props) => {
           <Box key={index} sx={{px:{md:1}}}>
             <Button variant="standard" key={category.name} 
             sx={{'&:hover':{backgroundColor:"#7D7C7C", transform:"scale(1.1)"}, 
-            my:{md:0.4}, 
+            my:{md:0.8}, 
             width:"auto"}}
-            onClick={() => props.setCategory(category.name)}
+            onClick={() => setCategory(category.name)}
             >
               <span style={{ color:"lightgreen", marginTop:"4px" }}><div>{category.icon}</div></span>
               <Typography variant="body1" color="grey" sx={{px:2}}>
@@ -42,16 +62,16 @@ const Sidebar = (props) => {
           </Box>
         ))}
 
-      </Stack>
-        {isScreenGreaterThanSm && (
-            <Stack direction="row" sx={{ml:4}}>
+        {isScreenGreaterThanMd && (
+            <Stack direction="row" sx={{ml:1, position:"relative"}}>
               <CopyrightSharpIcon height="10px" sx={{ color: 'grey' }} />
               <Typography variant="body1" color={'grey'} sx={{ mt: 0.1}}>
                 Copyright ReactTube
               </Typography>
             </Stack>
         )}
-      </>
+      </Stack>
+      </Box>
   );
 };
 

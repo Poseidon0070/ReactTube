@@ -8,10 +8,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const SavedVideos = () => {
 
-    let { savedVideos, setSavedVideos } = useAppContext()
+    let { savedVideos, setSavedVideos, setSidebarOpen } = useAppContext()
     console.log(savedVideos)
     const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
     let navigate = useNavigate()
+
+    useEffect(() => {
+      setSidebarOpen(false)
+    }, [])
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>

@@ -66,7 +66,7 @@ const Navbar = () => {
         </Box>
         <Paper
           component="form"
-          sx={{ width: { xs: "350px", md: "500px" }, height: '40px', borderRadius: 4, opacity: "0.9", opacity: "0.85" }}
+          sx={{ width: { xs: "350px", md: "500px" }, height: '40px', borderRadius: 4, opacity: "0.85" }}
         >
           <TextField
             variant="standard"
@@ -187,7 +187,7 @@ const Navbar = () => {
                 <List component="div" disablePadding sx={{ bgcolor: 'white', boxShadow: 3, borderRadius: 1, width:"240px", py:"10px", px:"10px"}}>
                   <Typography variant='h6' sx={{textAlign:"center" }}>{user.displayName}</Typography>
                   <Typography sx={{textAlign:"center", fontSize:"15px", borderBottom:"1.5px solid gray"}}>{user.email}</Typography>
-                  <ListItemButton>
+                  <ListItemButton onClick={() => navigate('saved-videos')}>
                     <ListItemIcon>
                       <GradeRoundedIcon />
                     </ListItemIcon>

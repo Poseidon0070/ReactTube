@@ -5,6 +5,7 @@ import { RootLayout, Home, Channel, Error, SearchFeed,VideoDetail } from './page
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, useAppContext } from './context/appContext';
+import SavedVideos from './pages/SavedVideos';
 
 const queryClient = new QueryClient()
 
@@ -40,7 +41,8 @@ const App = () => {
         { index: true, element: <Home /> },
         { path : 'channel/:channelId', element : <Channel />},
         { path : 'search/:searchTerm', element : <SearchFeed />},
-        { path : 'video/:videoId', element : <VideoDetail />}
+        { path : 'video/:videoId', element : <VideoDetail />},
+        { path : 'saved-videos', element : <SavedVideos />}
       ],
     },
   ]);

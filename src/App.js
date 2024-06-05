@@ -6,21 +6,24 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, useAppContext } from './context/appContext';
 import SavedVideos from './pages/SavedVideos';
+import Subscriptions from './pages/Subscriptions';
 
 const queryClient = new QueryClient()
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2196f3', 
+    },
+    secondary: {
+      main: '#f50057', 
+    },
+  },
+});
+
 const App = () => {
   let { setUser } = useAppContext()
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#2196f3', 
-      },
-      secondary: {
-        main: '#f50057', 
-      },
-    },
-  });
+  const {fetchSavedVideo, fetchSubscription} = useAppContext()
 
   useEffect(() => {
     onAuthStateChanged(auth, (User) => {
@@ -31,6 +34,12 @@ const App = () => {
       }
     })
   }, [setUser])
+
+
+  useEffect(() => {
+    fetchSavedVideo()
+    fetchSubscription()
+  }, [])
   
 
   let router = createBrowserRouter([ 
@@ -43,7 +52,8 @@ const App = () => {
         { path : 'channel/:channelId', element : <Channel />},
         { path : 'search/:searchTerm', element : <SearchFeed />},
         { path : 'video/:videoId', element : <VideoDetail />},
-        { path : 'saved-videos', element : <SavedVideos />}
+        { path : 'saved-videos', element : <SavedVideos />},
+        { path : 'subscriptions', element : <Subscriptions />},
       ],
     },
   ]);

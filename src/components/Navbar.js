@@ -29,7 +29,6 @@ const Navbar = () => {
   const isScreenGreaterThanSm = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   let inputWidth = isScreenGreaterThanSm ? '310px' : '260px';
   let searchWidth = isScreenGreaterThanSm ? '260px' : '210px';
-  console.log(isSidebarOpen)
   let handleSignup = () => {
     signupWithGoogle()
   }
@@ -193,7 +192,7 @@ const Navbar = () => {
                     </ListItemIcon>
                     <ListItemText primary="Saved Videos" />
                   </ListItemButton>
-                  <ListItemButton>
+                  <ListItemButton onClick={() => navigate('subscriptions')}>
                     <ListItemIcon>
                       <SubscriptionsRoundedIcon />
                     </ListItemIcon>

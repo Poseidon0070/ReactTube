@@ -21,7 +21,7 @@ const VideoDetail = () => {
   const [videos, setVideos] = useState(null);
   const { videoId } = useParams();
   const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('lg'));
-  const {setSidebarOpen,savedVideos, setSavedVideos} = useAppContext()
+  const {setSidebarOpen, saveVideo, saveSubscription} = useAppContext()
 
   useEffect(() => {
     setSidebarOpen(false)
@@ -60,14 +60,18 @@ const VideoDetail = () => {
       views : videoDetail.statistics.viewCount,
       likes : videoDetail.statistics.likeCount
     }
-    setSavedVideos(oldVideos => {
-      let videoExist = oldVideos.some(video => video.videoId === newVideo.videoId)
-      if(!videoExist){
-        return [...oldVideos, newVideo]
-      }
-      return oldVideos
-    })
-    console.log(savedVideos)
+    saveVideo(newVideo)
+  }
+
+  let subscriptionHandler = () => {
+    console.log(channelDetail)
+    let newChannel = {
+      channelId : channelDetail.id,
+      channelTitle : channelDetail.snippet.title,
+      channelThumbnail : channelDetail.snippet.thumbnails.medium.url,
+      subscribers : channelDetail.statistics.subscriberCount,
+    }
+    saveSubscription(newChannel)
   }
 
   const { snippet: { title, channelId, channelTitle }, statistics: { viewCount, likeCount } } = videoDetail;
@@ -144,7 +148,7 @@ const VideoDetail = () => {
                       }
                     </Box>
                     <Box
-                      // onClick={handleSignup}
+                      onClick={subscriptionHandler}
                       sx={{
                         border: "1px solid white",
                         display: "flex",

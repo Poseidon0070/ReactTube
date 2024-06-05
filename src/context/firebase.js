@@ -10,7 +10,8 @@ const firebaseConfig = {
   projectId: "react-tube-01",
   storageBucket: "react-tube-01.appspot.com",
   messagingSenderId: "1017999452357",
-  appId: "1:1017999452357:web:4cd877b157dbda20aa68ac"
+  appId: "1:1017999452357:web:4cd877b157dbda20aa68ac",
+  databaseURL: "https://react-tube-01-default-rtdb.firebaseio.com/"
 };
 
 // Initialize Firebase

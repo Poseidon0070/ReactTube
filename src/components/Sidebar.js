@@ -25,7 +25,7 @@ const Sidebar = (props) => {
         top: "80px",
         left: 0,
         height: isScreenGreaterThanMd?"97%":"auto",
-        zIndex: "1000",
+        zIndex: "1",
         bgcolor:"black",
         opacity:"0.9",
         display:"flex",

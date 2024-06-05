@@ -33,12 +33,12 @@ const SavedVideos = () => {
                                 <Typography onClick={() => navigate(`/video/${video.videoId}`)} sx={{ color: "darkgrey", display: "flex", alignItems: "center", mr: "12px",'&:hover': {
                                                 cursor: 'default',
                                             } }}>{index + 1}</Typography>
-                                <img onClick={() => navigate(`/video/${video.videoId}`)} src={video.videoThumbnail} alt="img.." style={{ borderRadius: "20px", height: "140px", width: isScreenGreaterThanMd ? "250px" : "190px" }}></img>
+                                <img onClick={() => navigate(`/video/${video.videoId}`)} src={video.videoThumbnail} alt="img.." style={{ borderRadius: "20px", height: "auto", width: isScreenGreaterThanMd ? "250px" : "190px" }}></img>
                                 <Box onClick={() => navigate(`/video/${video.videoId}`)} sx={{ display: "flex", width: "100%" }}>
                                     <Box sx={{ ml: "15px", mt: "10px" }}>
-                                        <Typography sx={{ color: "white" }}>{video.videoTitle}</Typography>
+                                        <Typography sx={{ color: "white", fontSize: "16px" }}>{video.videoTitle}</Typography>
                                         <Typography sx={{ color: "grey", fontSize: "15px" }}>{video.channelTitle}<CheckCircleIcon sx={{ fontSize: "12px", color: "gray" }} /></Typography>
-                                        <Typography sx={{ color: "grey", fontSize: "12px" }}>{reformat(formatNumber(parseInt(video.views).toLocaleString()))} views</Typography>
+                                        <Typography sx={{ color: "grey", fontSize: "13px" }}>{reformat(formatNumber(parseInt(video.views).toLocaleString()))} views</Typography>
                                     </Box>
                                 </Box>
                                     <Box 

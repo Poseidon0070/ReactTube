@@ -179,11 +179,9 @@ const Navbar = () => {
                 </Avatar>
               </Box>
             </Box>
-            <Box sx={{ position: 'absolute', top:"50px", right: "0px", zIndex: 1, width: 'max-content' }}>
-              <Collapse in={userNav} timeout="auto" unmountOnExit>
-                <Box>
-                </Box>
-                <List component="div" disablePadding sx={{ bgcolor: 'white', boxShadow: 3, borderRadius: 1, width:"240px", py:"10px", px:"10px"}}>
+            <Box sx={{ position: 'absolute', top:"50px", right: "0px", zIndex: "5001", width: 'max-content' }}>
+              <Collapse in={userNav} timeout="auto" unmountOnExit sx={{zIndex:"5000"}}>
+                <List component="div" disablePadding sx={{ bgcolor: 'white', boxShadow: 3, borderRadius: 1, zIndex: "50001", width:"240px", py:"10px", px:"10px"}}>
                   <Typography variant='h6' sx={{textAlign:"center" }}>{user.displayName}</Typography>
                   <Typography sx={{textAlign:"center", fontSize:"15px", borderBottom:"1.5px solid gray"}}>{user.email}</Typography>
                   <ListItemButton onClick={() => navigate('saved-videos')}>

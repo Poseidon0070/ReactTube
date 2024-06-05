@@ -47,7 +47,7 @@ let AppContextProvider = ({children}) => {
     }
 
     const fetchSubscription = async() => {
-        get(child(ref(db), "subscription"))
+        get(child(ref(db), "subscriptions"))
         .then((snapshot) => {
             let subscription = snapshot.val().map(subs => subs)
             setsubscriptions(subscription)
@@ -109,6 +109,7 @@ let AppContextProvider = ({children}) => {
             deleteVideo,
             saveVideo,
             fetchSavedVideo,
+            subscriptions,
             saveSubscription,
             removeSubscription,
             fetchSubscription

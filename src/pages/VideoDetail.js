@@ -68,6 +68,7 @@ const VideoDetail = () => {
     let newChannel = {
       channelId : channelDetail.id,
       channelTitle : channelDetail.snippet.title,
+      channelDescription : channelDetail.snippet.description,
       channelThumbnail : channelDetail.snippet.thumbnails.medium.url,
       subscribers : channelDetail.statistics.subscriberCount,
     }
@@ -80,7 +81,7 @@ const VideoDetail = () => {
     <>
       {isLoading && <LinearProgress />}
       {!isLoading &&
-        <Box minHeight="90vh">
+        <Box minHeight="90vh" sx={{mt:!isScreenGreaterThanMd ? "40px" : "0px"}}>
           <Stack direction={{ xs: "column", md: "row", ml: "2" }}
             sx={{ display: "flex", }}
             divider={
@@ -96,7 +97,7 @@ const VideoDetail = () => {
             <Box sx={{ width: "90vw" }}>
               <Box sx={{ width: { md: "70vw", xs: "95vw" }, position: "sticky", top: "50px", px: 3 }}>
                 <ReactPlayer url={`https://www.youtube.com/watch?v=${videoId}`} className="react-player" controls />
-                <Typography color="#fff" variant="h5" fontWeight="bold" p={2}>
+                <Typography color="#fff" variant="h6" fontWeight="bold" p={2}>
                   {title}
                 </Typography>
                 <Stack direction="row" justifyContent="space-between" sx={{ color: "#fff" }} py={1} px={2} >

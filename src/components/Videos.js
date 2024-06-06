@@ -5,7 +5,7 @@ import { Box,LinearProgress, useMediaQuery } from '@mui/material'
  
 const Videos = ({videos,innerref, isChannel, direction}) => {
   const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
-  if(!videos?.length) return <h1><LinearProgress /></h1>
+  if(!videos?.length) return <h1><LinearProgress sx={{mt:isScreenGreaterThanMd?"0px":"45px", zIndex:"100"}} color="primary" /></h1>
   return (
     <>
         <Box direction = {direction || "row"} sx={{display:"flex",

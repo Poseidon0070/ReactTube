@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import fetchData from '../assets/utils/dataFetcher'
-import { Box, LinearProgress } from '@mui/material'
+import { Box, LinearProgress, useMediaQuery } from '@mui/material'
 import ChannelCard from '../components/ChannelCard'
 import Videos from '../components/Videos'
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
@@ -12,9 +12,9 @@ import { useAppContext } from '../context/appContext'
 const Channel = () => {
     const {channelId} = useParams();
     let {ref, inView} = useInView()
-    const queryClient = useQueryClient()
     const [channelDetail, setChannelDetail] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
     const {setSidebarOpen} = useAppContext()
 
@@ -50,6 +50,7 @@ const Channel = () => {
       queryKey: ['fetchVideos'],
       queryFn: fetchVideos,
       initialPageParam: '',
+      refetchOnWindowFocus: false,
       getNextPageParam: (data) => {
          return data.nextPageToken || false;
       },
@@ -62,7 +63,7 @@ const Channel = () => {
        }
      }, [inView,hasNextPage,fetchNextPage])
   
-     if (status === 'pending' || isLoading) return <LinearProgress color="primary" />;
+     if (status === 'pending' || isLoading) return <LinearProgress sx={{mt:isScreenGreaterThanMd?"0px":"45px", zIndex:"100"}} color="primary" />;
      if (error) return <div>Error: {error.message}</div>;
   
     videos = data?.pages.map(page => page.items).reduce((acc, val) => acc.concat(val), []);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { categories } from '../assets/utils/constants';
 import { Stack, useMediaQuery, Typography,Box } from '@mui/material';
 import { Button } from '@mui/material';
@@ -11,13 +11,15 @@ import { useNavigate } from 'react-router-dom';
 const Sidebar = (props) => {
 
   const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
-  const {isSidebarOpen} = useAppContext()
-  const {category, setCategory} = useAppContext();
+  const {setCategoryHandler} = useAppContext();
   let navigate = useNavigate()
-  const fetchVideos = async ({ pageParam = '' }) => {
-    let res = await fetchData(`search?part=snippet&q=${category}`, pageParam)
-    return res;
-  };
+
+  let changeCategoryHandler = (val) => {
+    setCategoryHandler(val)
+    .then(() => {
+      navigate('/')
+    })
+  }
 
   return (
     <Box sx={{
@@ -52,7 +54,7 @@ const Sidebar = (props) => {
             sx={{'&:hover':{backgroundColor:"#7D7C7C", transform:"scale(1.1)"}, 
             my:{md:0.8}, 
             width:"auto"}}
-            onClick={() => setCategory(category.name)}
+            onClick={() => changeCategoryHandler(category.name)}
             >
               <span style={{ color:"lightgreen", marginTop:"4px" }}><div>{category.icon}</div></span>
               <Typography variant="body1" color="grey" sx={{px:2}}>

@@ -4,7 +4,7 @@ import {firebaseApp}  from './firebase'
 import { getAuth, signInWithPopup, signOut, GoogleAuthProvider } from 'firebase/auth'
 import {getDatabase,ref,set,get,child} from 'firebase/database'
  
-const AppContext = createContext(null)
+const AppContext = createContext()
 export const auth = getAuth(firebaseApp)
 const db = getDatabase(firebaseApp)
 
@@ -15,6 +15,18 @@ let AppContextProvider = ({children}) => {
     let [savedVideos, setSavedVideos] = useState([])
     let [subscriptions, setsubscriptions] = useState([])
     const [category, setCategory] = useState('New');
+
+    const setCategoryHandler = async(val) => {
+        setCategory(val)
+        return set(ref(db,"category"), val)
+    }
+
+    const fetchCategory = async() => {
+        get(child(ref(db), "category"))
+        .then(snapshot => {
+            setCategory(snapshot.val())
+        })
+    }
 
     const signupWithGoogle = async() => {
         signInWithPopup(auth, googleProvider)
@@ -76,7 +88,6 @@ let AppContextProvider = ({children}) => {
     const deleteVideo = async(videoId) => {
         if(savedVideos.length === 0) return ;
         let index = savedVideos.findIndex(video => video.videoId === videoId)
-        console.log(index)
         if(index !== -1){
             let newVideos = savedVideos.filter(video => video.videoId !== videoId)
             setSavedVideos(newVideos)
@@ -85,9 +96,9 @@ let AppContextProvider = ({children}) => {
     }
 
     const removeSubscription = async(channelId) => {
-        if(subscriptions.length == 0) return ;
+        if(subscriptions.length === 0) return ;
         let index = subscriptions.findIndex(channel => channel.channelId === channelId)
-        if(index != -1){
+        if(index !== -1){
             let newChannels = subscriptions.filter(channel => channel.channelId !== channelId)
             setsubscriptions(newChannels)
             await set(ref(db, "subscriptions"), newChannels)
@@ -106,6 +117,8 @@ let AppContextProvider = ({children}) => {
             setSavedVideos,
             category,
             setCategory,
+            setCategoryHandler,
+            fetchCategory,
             deleteVideo,
             saveVideo,
             fetchSavedVideo,

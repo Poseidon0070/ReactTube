@@ -22,8 +22,7 @@ const theme = createTheme({
 });
 
 const App = () => {
-  let { setUser } = useAppContext()
-  const {fetchSavedVideo, fetchSubscription} = useAppContext()
+  const {setUser, fetchSavedVideo, fetchSubscription, fetchCategory} = useAppContext()
 
   useEffect(() => {
     onAuthStateChanged(auth, (User) => {
@@ -39,6 +38,7 @@ const App = () => {
   useEffect(() => {
     fetchSavedVideo()
     fetchSubscription()
+    fetchCategory()
   }, [])
   
 

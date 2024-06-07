@@ -5,7 +5,6 @@ import { Button } from '@mui/material';
 import './Sidebar.css'; 
 import CopyrightSharpIcon from '@mui/icons-material/CopyrightSharp';
 import { useAppContext } from '../context/appContext';
-import fetchData from '../assets/utils/dataFetcher';
 import { useNavigate } from 'react-router-dom';
 
 const Sidebar = (props) => {

@@ -18,11 +18,13 @@ let AppContextProvider = ({children}) => {
 
     const setCategoryHandler = async(val) => {
         setCategory(val)
-        return set(ref(db,"category"), val)
+        if(!user) return ;
+        return set(ref(db,`${user.uid}/category`), val)
     }
 
     const fetchCategory = async() => {
-        get(child(ref(db), "category"))
+        if(!user) return ;
+        get(child(ref(db), `${user.uid}/category`))
         .then(snapshot => {
             setCategory(snapshot.val())
         })
@@ -48,7 +50,8 @@ let AppContextProvider = ({children}) => {
     }
     
     const fetchSavedVideo = async() => {
-        get(child(ref(db), "starred"))
+        if(!user) return ;
+        get(child(ref(db), `${user.uid}/starred`))
         .then((snapshot) => {
             let vids = snapshot.val().map(video => video)
             setSavedVideos(vids)
@@ -59,7 +62,8 @@ let AppContextProvider = ({children}) => {
     }
 
     const fetchSubscription = async() => {
-        get(child(ref(db), "subscriptions"))
+        if(!user) return ;
+        get(child(ref(db), `${user.uid}/subscriptions`))
         .then((snapshot) => {
             let subscription = snapshot.val().map(subs => subs)
             setsubscriptions(subscription)
@@ -70,38 +74,42 @@ let AppContextProvider = ({children}) => {
     }
     
     const saveVideo = async(newVideo) => {
+        if(!user) return ;
         let videoExist = savedVideos.some(video => video.videoId === newVideo.videoId)
         if(videoExist) return ;
         let newVideos = [...savedVideos, newVideo]
         setSavedVideos(newVideos)
-        await set(ref(db, "starred"), newVideos)
+        await set(ref(db, `${user.uid}/starred`), newVideos)
     }
 
     const saveSubscription = async(newChannel) => {
+        if(!user) return ;
         let channelExist = subscriptions.some(channel => channel.channelId === newChannel.channelId)
         if(channelExist) return ;
         let newChannels = [...subscriptions, newChannel]
         setsubscriptions(newChannels)
-        await set(ref(db, "subscriptions"), newChannels)
+        await set(ref(db, `${user.uid}/subscriptions`), newChannels)
     }
     
     const deleteVideo = async(videoId) => {
+        if(!user) return ;
         if(savedVideos.length === 0) return ;
         let index = savedVideos.findIndex(video => video.videoId === videoId)
         if(index !== -1){
             let newVideos = savedVideos.filter(video => video.videoId !== videoId)
             setSavedVideos(newVideos)
-            await set(ref(db, "starred"), newVideos)
+            await set(ref(db, `${user.uid}/starred`), newVideos)
         }
     }
 
     const removeSubscription = async(channelId) => {
+        if(!user) return ;
         if(subscriptions.length === 0) return ;
         let index = subscriptions.findIndex(channel => channel.channelId === channelId)
         if(index !== -1){
             let newChannels = subscriptions.filter(channel => channel.channelId !== channelId)
             setsubscriptions(newChannels)
-            await set(ref(db, "subscriptions"), newChannels)
+            await set(ref(db, `${user.uid}/subscriptions`), newChannels)
         }
     }
 

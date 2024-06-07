@@ -36,7 +36,7 @@ const Subscriptions = () => {
                                           } }}>{index + 1}</Typography>
                           }
                                 <Box onClick={() => navigate(`/channel/${channel.channelId}`)} sx={{textAlign:"center"}}>
-                              <img src={channel.channelThumbnail} alt="img.." style={{ borderRadius: "20px", height: "auto", width: isScreenGreaterThanMd ? "160px" : "50%", borderRadius:"100%" }}></img>
+                              <img src={channel.channelThumbnail} alt="img.." style={{ height: "auto", width: isScreenGreaterThanMd ? "160px" : "50%", borderRadius:"100%" }}></img>
                               </Box>
                               <Box onClick={() => navigate(`/channel/${channel.channelId}`)} sx={{ display: "flex", width: "100%" }}>
                                   <Box sx={{ ml: "15px", mt: "10px" }}>

@@ -7,6 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth, useAppContext } from './context/appContext';
 import SavedVideos from './pages/SavedVideos';
 import Subscriptions from './pages/Subscriptions';
+import PrivateRoute from './components/Private';
 
 const queryClient = new QueryClient()
 
@@ -52,8 +53,8 @@ const App = () => {
         { path : 'channel/:channelId', element : <Channel />},
         { path : 'search/:searchTerm', element : <SearchFeed />},
         { path : 'video/:videoId', element : <VideoDetail />},
-        { path : 'saved-videos', element : <SavedVideos />},
-        { path : 'subscriptions', element : <Subscriptions />},
+        { path: 'saved-videos', element: <PrivateRoute><SavedVideos /></PrivateRoute> },
+        { path: 'subscriptions', element: <PrivateRoute><Subscriptions /></PrivateRoute> },
       ],
     },
   ]);

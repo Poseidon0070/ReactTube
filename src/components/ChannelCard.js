@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, CardContent, CardMedia, Typography, useMediaQuery } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Link, useLocation } from 'react-router-dom';
 import { demoProfilePicture } from '../assets/utils/constants';
@@ -7,7 +7,7 @@ import { formatNumber, reformat } from '../assets/utils/unitConverter'
 import { useAppContext } from '../context/appContext';
 
 const ChannelCard = ({ channelDetail, marginTop, isLinkDisabled }) => {
-  const { subscriptions,saveSubscription, removeSubscription } = useAppContext()
+  const { user, subscriptions,saveSubscription, removeSubscription } = useAppContext()
   let {pathname} = useLocation()
   let subscriptionHandler = () => {
     let newChannel = {
@@ -35,7 +35,7 @@ const ChannelCard = ({ channelDetail, marginTop, isLinkDisabled }) => {
         width: { xs: '356px', md: '320px' },
         height: '326px',
         marginTop,
-        mb:pathname.startsWith('/channel')?"50px":"0px"
+        mb:pathname.startsWith('/channel')?"50px":"0px",
       }}
     >
       <Link
@@ -62,7 +62,7 @@ const ChannelCard = ({ channelDetail, marginTop, isLinkDisabled }) => {
           )}
         </CardContent>
       </Link>
-      {pathname.startsWith('/channel') && 
+      {user && pathname.startsWith('/channel') && 
           <Box
             onClick={() => {subscribed ? removeSubscription(channelDetail?.id) : subscriptionHandler()}}
             sx={{

@@ -73,7 +73,7 @@ const Channel = () => {
   return (
     <>
       <Box>
-        <Box sx={{height:"230px", bgcolor:"yellow", width:"100%"}} />
+        <Box sx={{height:"230px", bgcolor:"yellow", width:"100%",mt: isScreenGreaterThanMd ? "0px" : "45px", zIndex: "100"}} />
         <Box sx={{display:"flex", justifyContent:"center"}}>
           <ChannelCard channelDetail={channelDetail} marginTop='-100px' isLinkDisabled={true}/>
         </Box>

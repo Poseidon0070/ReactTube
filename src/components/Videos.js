@@ -5,7 +5,11 @@ import { Box,LinearProgress, useMediaQuery } from '@mui/material'
  
 const Videos = ({videos,innerref, isChannel, direction}) => {
   const isScreenGreaterThanMd = useMediaQuery((theme) => theme.breakpoints.up('md'));
-  if(!videos?.length) return <h1><LinearProgress sx={{mt:isScreenGreaterThanMd?"0px":"45px", zIndex:"100"}} color="primary" /></h1>
+  if(!videos || !videos.length) {
+    console.log("aasdasd")
+    // return <Box sx={{height:"100vh", width:"100vw", bgcolor:"red",zIndex:1001}}></Box>
+    return <LinearProgress sx={{position:"relative",top:"-82px",left:"0px", zIndex:1001}} color="primary" />
+  }
   return (
     <>
         <Box direction = {direction || "row"} sx={{display:"flex",

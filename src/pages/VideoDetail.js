@@ -49,7 +49,7 @@ const VideoDetail = () => {
     setIsLoading(false)
   }, [videoId]);
 
-  if (!videoDetail?.snippet || isLoading) return <h1>Loading</h1>;
+  if (!videoDetail?.snippet || isLoading) return <LinearProgress sx={{position:"relative",top:"-82px",left:"0px", zIndex:1001}} color="primary" />;
 
   let saveVideoHandler = () => {
     let newVideo = {
@@ -74,7 +74,7 @@ const VideoDetail = () => {
     saveSubscription(newChannel)
   }
 
-  if (isLoading) return <LinearProgress sx={{ mt: isScreenGreaterThanMd ? "0px" : "45px", zIndex: "100" }} color="primary" />;
+  if (isLoading) return <LinearProgress sx={{position:"relative",top:"-82px",left:"0px", zIndex:1001}} color="primary" />;
 
   const subscribed = subscriptions.some(channel => channel.channelId === channelDetail?.id)
   const isSaved = savedVideos.some(vid => vid.videoId === videoId)

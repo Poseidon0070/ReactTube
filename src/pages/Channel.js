@@ -63,7 +63,7 @@ const Channel = () => {
        }
      }, [inView,hasNextPage,fetchNextPage])
   
-     if (status === 'pending' || isLoading) return <LinearProgress sx={{mt:isScreenGreaterThanMd?"0px":"45px", zIndex:"100"}} color="primary" />;
+     if (status === 'pending' || isLoading) return <LinearProgress sx={{position:"relative",top:"-82px",left:"0px", zIndex:1001}} color="primary" />;
      if (error) return <div>Error: {error.message}</div>;
   
     videos = data?.pages.map(page => page.items).reduce((acc, val) => acc.concat(val), []);

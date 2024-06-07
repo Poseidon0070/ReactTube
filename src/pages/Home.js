@@ -42,8 +42,10 @@ const Home = () => {
   useEffect(() => {
     queryClient.resetQueries(['fetchVideos', category]);
   }, [category, queryClient]);
-
-  if (status === 'loading') return <LinearProgress sx={{mt:isScreenGreaterThanMd?"0px":"45px", zIndex:"100"}} color="primary" />;
+  
+  if (status === 'pending') {
+    return <LinearProgress sx={{position:"relative",top:"-82px",left:"0px", zIndex:1001}} color="primary" />;
+  }
   if (error) return <div>Error: {error.message}</div>;
 
   const videos = data?.pages.map(page => page.items).flat();

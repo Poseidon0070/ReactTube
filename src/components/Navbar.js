@@ -46,11 +46,12 @@ const Navbar = () => {
 
   if (isSearchBarOpen) {
     return (
-      <Box py={2} sx={{ display: "flex", mr: "1px", mb: "9px", justifyContent: "center" }}>
+      <Box py={3} sx={{ display: "flex", mr: "1px", justifyContent: "center", position: 'sticky',top: 0,zIndex: 10000, bgcolor:"black" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <ArrowBackRoundedIcon fontSize='large'
             onClick={() => setSearchBarOpen(false)}
             sx={{
+
               color: "grey", transition: "200ms ease-in-out", mr: "5px", mt: "4px", p: "1px", '&:hover': {
                 cursor: 'pointer',
                 transform: "scale(1.07)",
